@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../todo.service';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-todo',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
 })
