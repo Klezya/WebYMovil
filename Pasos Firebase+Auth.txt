@@ -1,0 +1,16 @@
+node= 20
+ng= 18
+nom= 10
+-------------
+
+ng add @angular/fire
+(firebase, realtime db, auth)
+
+npm install -g firebase-tools
+
+ng g c auth/features/sing-up
+ng g c auth/features/log-in
+
+//Modificacion en routes.ts 
+    path: "auth"
+
