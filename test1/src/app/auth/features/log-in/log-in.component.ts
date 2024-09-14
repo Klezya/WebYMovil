@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { hasEmailError, isRequired } from '../../utils/validators';
 
 //Interfaz del formulario log-in
 interface FormLogIn {
@@ -21,7 +22,17 @@ interface FormLogIn {
 
 
 export default class LogInComponent {
+
   private _formBuilder = inject(FormBuilder);
+
+  isRequired(field: 'email' | 'password'){
+    return isRequired(field, this.form);
+  }
+
+  hasEmailError(){
+    return hasEmailError(this.form)
+  }
+
 
   //Crear logica del form
   form = this._formBuilder.group<FormLogIn>({
@@ -32,6 +43,7 @@ export default class LogInComponent {
     ]),
     password: this._formBuilder.control('', Validators.required),
   });
+
 
   submit(){
     if(this.form.invalid) return;
