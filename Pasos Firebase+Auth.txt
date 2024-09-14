@@ -8,6 +8,8 @@ ng add @angular/fire
 
 npm install -g firebase-tools
 
+npm install ngx-sonner
+
 ng g c auth/features/sign-up
 ng g c auth/features/log-in
 
