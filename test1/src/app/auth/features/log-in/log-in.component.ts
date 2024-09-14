@@ -6,6 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { hasEmailError, isRequired } from '../../utils/validators';
+import { Auth } from '@angular/fire/auth';
+import { AuthService } from '../../data-access/auth.service';
+import { toast } from 'ngx-sonner';
 
 //Interfaz del formulario log-in
 interface FormLogIn {
@@ -24,6 +27,8 @@ interface FormLogIn {
 export default class LogInComponent {
 
   private _formBuilder = inject(FormBuilder);
+  private _authService = inject(AuthService)
+
 
   isRequired(field: 'email' | 'password'){
     return isRequired(field, this.form);
@@ -45,15 +50,23 @@ export default class LogInComponent {
   });
 
 
-  submit(){
+  async submit(){
     if(this.form.invalid) return;
     
     const {email, password} = this.form.value;
 
-    if (!email || !password) return;
+    try {
 
-    console.log({email, password})
+      if (!email || !password) return;
+      console.log({email, password})
+      await this._authService.logIn({email, password})
 
+      toast.success("Usuario Creado")
+
+    } catch (error) {
+      toast.error("Ocurrio un error")
+      console.log(error)
+    }
   }
 
 }
