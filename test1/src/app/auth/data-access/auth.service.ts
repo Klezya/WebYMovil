@@ -1,5 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from '@angular/fire/auth';
 
 export interface User {
   email: string;
@@ -12,8 +16,16 @@ export interface User {
 export class AuthService {
   private _auth = inject(Auth);
 
-  logIn(user: User) {
+  signUp(user: User) {
     return createUserWithEmailAndPassword(
+      this._auth,
+      user.email,
+      user.password
+    );
+  }
+
+  logIn(user: User) {
+    return signInWithEmailAndPassword(
       this._auth,
       user.email,
       user.password
