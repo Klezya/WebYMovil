@@ -1,11 +1,15 @@
 import { AbstractControl, FormGroup, ValidationErrors } from "@angular/forms";
+import { formatRut, validateRut } from "@fdograph/rut-utilities";
 
 
-export class RunValidator {
-
-
-    
+export const validarRut = (rut: string) => {
+    return validateRut(rut)
 }
+
+export const formatearRut = (rut: string) =>{
+    return formatRut(rut)
+}//Formato 11222333-4
+
 
 export const isRequiredRun = (form: FormGroup) => {
     const control = form.get('run');
@@ -13,29 +17,19 @@ export const isRequiredRun = (form: FormGroup) => {
     return control && control.touched && control.hasError('required');
 }
 
+export const hasErrorRun = (form: FormGroup) => {
+    const control = form.get('run')
 
-//MALAA
-export const validarRUT = (rut: any): any => {
-  let sum = 0;
-  let mul = 2;
+    return control && control.touched && !validarRut(control.value) 
+}
 
-  let i = rut.length;
-  while (i--) {
-    sum = sum + parseInt(rut.charAt(i)) * mul;
-    if (mul % 7 === 0) {
-      mul = 2;
-    } else {
-      mul++;
+//Validators del formControl
+export const runValidator = (control: AbstractControl): ValidationErrors | null => {
+    const run = control.value;
+  
+    if (!run || !validarRut(run)) {
+      return { invalidRun: true };
     }
-  }
-
-  const res = sum % 11;
-
-  if (res === 0) {
-    return '0';
-  } else if (res === 1) {
-    return 'k';
-  }
-
-  return `${11 - res}`;
-};
+    return null;
+  };
+  

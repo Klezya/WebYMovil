@@ -16,6 +16,9 @@ npx tailwindcss init
 //Para alertas mas lindas
 npm install ngx-sonner
 
+//Verificar ruts
+npm install --save @fdograph/rut-utilities
+
 ng g c auth/features/sign-up
 ng g c auth/features/log-in
 

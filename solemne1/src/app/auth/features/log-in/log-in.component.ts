@@ -7,12 +7,10 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../data-access/auth.service';
 import { Router } from '@angular/router';
-import { isRequiredRun, validarRUT } from '../../../utils/validator';
+import { formatearRut, hasErrorRun, isRequiredRun, runValidator, validarRut } from '../../../utils/validator';
 import { toast } from 'ngx-sonner';
+import { FormLogIn } from '../../../utils/interfaces';
 
-interface FormLogIn {
-  run: FormControl<string | null>;
-}
 
 @Component({
   selector: 'app-log-in',
@@ -21,6 +19,8 @@ interface FormLogIn {
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css',
 })
+
+
 export default class LogInComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
@@ -30,10 +30,14 @@ export default class LogInComponent {
     return isRequiredRun(this.form)
   }
 
+  hasErrorRun(){
+    return hasErrorRun(this.form)
+  }
+
   form = this._formBuilder.group<FormLogIn>({
     run: this._formBuilder.control('', [
-      Validators.required
-      //Validators.pattern('^d{1,8}-[kK0-9]{1}$'),
+      Validators.required,
+      runValidator
     ]),
   });
 
@@ -41,18 +45,25 @@ export default class LogInComponent {
   async submit(){
     if (this.form.invalid) return
       
-    const run = this.form.value
+    let temp = this.form.get('run')?.value
+    if (!temp) return
+
+    const run = formatearRut(temp)
+
     console.log(run)
-    console.log(validarRUT(run))
+    console.log(validarRut(run))
+
     try {
       if (!run) return
 
       await this._authService.logIn()
       toast.success('Iniciado Correctamente')
-      //this._router.navigateByUrl('/tramites')
+      this._router.navigateByUrl('/tramites')
 
     } catch (error) {
       console.log(error)
     }
   }
 }
+
+
