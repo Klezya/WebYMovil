@@ -11,6 +11,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: '/log-in'
+        redirectTo: 'auth/log-in'
     }
 ];

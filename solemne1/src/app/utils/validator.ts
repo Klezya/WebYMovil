@@ -13,13 +13,11 @@ export const formatearRut = (rut: string) =>{
 
 export const isRequiredRun = (form: FormGroup) => {
     const control = form.get('run');
-
     return control && control.touched && control.hasError('required');
 }
 
 export const hasErrorRun = (form: FormGroup) => {
     const control = form.get('run')
-
     return control && control.touched && !validarRut(control.value) 
 }
 

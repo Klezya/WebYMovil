@@ -50,8 +50,8 @@ export default class LogInComponent {
 
     const run = formatearRut(temp)
 
-    console.log(run)
-    console.log(validarRut(run))
+    //console.log(run)
+    //console.log(validarRut(run))
 
     try {
       if (!run) return
