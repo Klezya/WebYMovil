@@ -21,6 +21,8 @@ import { FormLogIn } from '../../../utils/interfaces';
 })
 
 
+
+
 export default class LogInComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
@@ -42,6 +44,7 @@ export default class LogInComponent {
   });
 
 
+
   async submit(){
     if (this.form.invalid) return
       
@@ -55,7 +58,6 @@ export default class LogInComponent {
 
     try {
       if (!run) return
-
       await this._authService.logIn()
       toast.success('Iniciado Correctamente')
       this._router.navigateByUrl('/tramites')
