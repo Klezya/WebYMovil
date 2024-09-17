@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './tramite-form.component.html',
   styleUrl: './tramite-form.component.css'
 })
-export class TramiteFormComponent {
+export default class TramiteFormComponent {
 
 }
