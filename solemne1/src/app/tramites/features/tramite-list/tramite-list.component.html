@@ -1,41 +1,26 @@
-<body class="h-screen flex items-center justify-center bg-gray-100">
-    <div class="flex flex-col md:flex-row gap-10 max-w-6xl mx-auto p-6 rounded-lg shadow-md">
+<body class="h-screen flex items-center justify-center">
+    <div class="bg-gray-900 flex flex-col md:flex-row gap-10 max-w-6xl mx-auto p-6 rounded-lg shadow-md">
       
       <!-- Sección de búsqueda de trámites -->
-      <div class="flex-1 p-8 bg-white border border-gray-300 rounded-md">
+      <div class="flex-1 p-8 bg-gray-800 border border-gray-300 rounded-md">
         <h2 class="text-2xl font-semibold mb-6">Datos de Búsqueda</h2>
-  
-        <!-- Campo de RUT -->
-        <div class="mb-4">
-          <label for="rut" class="block text-lg font-medium text-gray-700">RUT:</label>
-          <div class="flex items-center">
-            <input
-              type="text"
-              id="rut"
-              placeholder="Ingrese su RUT"
-              class="form-input mt-1 block w-full border border-gray-300 rounded-md p-2"
-            />
-            <button class="ml-2 px-4 py-2 bg-gray-500 text-white rounded-md">?</button>
-          </div>
-        </div>
   
         <!-- Campo de Tipo Trámite -->
         <div class="mb-4">
-          <label for="tipoTramite" class="block text-lg font-medium text-gray-700">Tipo Trámite:</label>
+          <label for="tipoTramite" class="block text-lg font-medium text-gray-200">Tipo Trámite: </label>
           <select
             id="tipoTramite"
-            class="form-select mt-1 block w-full border border-gray-300 rounded-md p-2"
+            class="form-select mt-1 block w-full bg-gray-900 border border-gray-200 rounded-md p-2"
           >
             <option value="primeraVez">Primera Vez</option>
             <option value="renovacion">Renovación</option>
             <option value="cambioClase">Cambio de Clase</option>
-            <option value="otros">Otros</option>
           </select>
         </div>
   
         <!-- Mensaje de Advertencia -->
         <div class="bg-red-100 text-red-700 px-4 py-3 rounded relative">
-          <strong class="font-bold">IMPORTANTE:</strong>
+          <strong class="font-bold">IMPORTANTE: </strong>
           <span class="block sm:inline">Debe seleccionar el tipo de trámite que realmente va a realizar, de lo contrario no se atenderá su solicitud.</span>
         </div>
   
@@ -46,11 +31,11 @@
       </div>
   
       <!-- Columna de Información -->
-      <div class="flex-1 p-8 bg-white border border-gray-300 rounded-md">
+      <div class="flex-1 p-8 border bg-gray-800 border-gray-300 rounded-md">
         <!-- Información del Sitio -->
         <div class="mb-6">
           <h2 class="text-2xl font-semibold mb-4">Información del Sitio</h2>
-          <ul class="list-disc pl-6 text-gray-700">
+          <ul class="list-disc pl-6 text-gray-400">
             <li>Los postulantes deberán tener residencia en la comuna de Viña del Mar.</li>
             <li>En caso de Renovación de una Licencia de otra comuna, deberá acreditar su domicilio con un certificado de residencia u otro documento.</li>
             <li>*Los duplicados y cambios de domicilios no necesitan reserva de hora. La atención para estos trámites es de Lunes a Viernes de 12:00 a 13:30 hrs.</li>
@@ -60,7 +45,7 @@
         <!-- Tipo de Trámites -->
         <div>
           <h2 class="text-2xl font-semibold mb-4">Tipo de Trámites <span class="bg-red-500 text-white rounded-md px-2">NUEVO</span></h2>
-          <ul class="list-disc pl-6 text-gray-700">
+          <ul class="list-disc pl-6 text-gray-400">
             <li>Primera Vez
               <ul class="list-inside list-disc pl-4">
                 <li>Clase B</li>
@@ -69,6 +54,7 @@
               </ul>
             </li>
             <li>Renovación</li>
+            <li>Cambio de Datos</li>
           </ul>
         </div>
       </div>

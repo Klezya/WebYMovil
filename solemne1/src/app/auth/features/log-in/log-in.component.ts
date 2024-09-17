@@ -22,7 +22,6 @@ import { FormLogIn } from '../../../utils/interfaces';
 
 
 
-
 export default class LogInComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
