@@ -1,12 +1,16 @@
 import { Routes } from '@angular/router';
+import { privateGuard, publicGuard } from './core/auth.guard';
 
 export const routes: Routes = [
     {
+        canActivateChild: [publicGuard()],
         path: 'auth',
         loadChildren: () => import('./auth/features/auth.routes')
     },
     {
-        path: '',
+        canActivateChild: [privateGuard()],
+        path: 'tramites',
+        loadComponent: () => import('./core/ui/layout.component'),
         loadChildren: () => import('./tramites/features/tramites.routes')
     },
     {

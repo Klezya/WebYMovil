@@ -14,7 +14,4 @@ export class AuthService {
     return signInAnonymously(this._auth)
   }
 
-  logOut(){
-    return signOut(this._auth)
-  }
 }
