@@ -10,21 +10,23 @@ import { Component } from '@angular/core';
 })
 export default class TramiteAgendaComponent {
 
-  bloques: string[] = [
-    '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', 
+  selectedBlock: string | null = null;
+
+  // Datos de la tabla de horarios
+  days: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  blocks: string[] = [
+    '08:00', '08:30', '09:00', '09:30', '10:00', '10:30',
     '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00'
   ];
 
-  selectedSlots: { [key: string]: boolean[] } = {
-    lunes: Array(this.bloques.length).fill(false),
-    martes: Array(this.bloques.length).fill(false),
-    miercoles: Array(this.bloques.length).fill(false),
-    jueves: Array(this.bloques.length).fill(false),
-    viernes: Array(this.bloques.length).fill(false),
-    sabado: Array(this.bloques.length).fill(false),
-  };
+  // Método para seleccionar un bloque
+  selectBlock(block: string) {
+    // Si el bloque ya está seleccionado, lo deselecciona
+    this.selectedBlock = this.selectedBlock === block ? null : block;
+  }
 
-  selectSlot(day: string, index: number) {
-    this.selectedSlots[day][index] = !this.selectedSlots[day][index];
+  // Método para saber si un bloque está seleccionado
+  isSelected(block: string): boolean {
+    return this.selectedBlock === block;
   }
 }
