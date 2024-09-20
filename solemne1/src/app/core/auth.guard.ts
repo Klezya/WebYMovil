@@ -38,3 +38,10 @@ export const publicGuard = (): CanActivateFn => {
         )
     }
 }
+
+export const agendaGuard = (): CanActivateFn =>{
+    return() => {
+
+        return true
+    }
+}

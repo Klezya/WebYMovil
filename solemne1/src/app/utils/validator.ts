@@ -11,10 +11,11 @@ export const formatearRut = (rut: string) =>{
 }//Formato 11222333-4
 
 
-export const isRequiredRun = (form: FormGroup) => {
-    const control = form.get('run');
+export const isRequired = (field: 'name' | 'run' | 'date', form: FormGroup) => {
+    const control = form.get(field);
+  
     return control && control.touched && control.hasError('required');
-}
+};
 
 export const hasErrorRun = (form: FormGroup) => {
     const control = form.get('run')

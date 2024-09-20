@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './tramite-form-renovacion.component.html',
   styleUrl: './tramite-form-renovacion.component.css'
 })
-export class TramiteFormRenovacionComponent {
+export default class TramiteFormRenovacionComponent {
 
 }

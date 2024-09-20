@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './tramite-form-cambio-datos.component.html',
   styleUrl: './tramite-form-cambio-datos.component.css'
 })
-export class TramiteFormCambioDatosComponent {
+export default class TramiteFormCambioDatosComponent {
 
 }

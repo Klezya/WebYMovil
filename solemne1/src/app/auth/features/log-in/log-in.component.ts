@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../data-access/auth.service';
 import { Router } from '@angular/router';
-import { formatearRut, hasErrorRun, isRequiredRun, runValidator, validarRut } from '../../../utils/validator';
+import { formatearRut, hasErrorRun, isRequired, runValidator, validarRut } from '../../../utils/validator';
 import { toast } from 'ngx-sonner';
 import { FormLogIn } from '../../../utils/interfaces';
 
@@ -27,7 +27,7 @@ export default class LogInComponent {
   private _router = inject(Router);
 
   isRequiredRun(){
-    return isRequiredRun(this.form)
+    return isRequired('run',this.form)
   }
 
   hasErrorRun(){

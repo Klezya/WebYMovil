@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './tramite-agenda.component.html',
   styleUrl: './tramite-agenda.component.css'
 })
-export class TramiteAgendaComponent {
+export default class TramiteAgendaComponent {
 
 }
