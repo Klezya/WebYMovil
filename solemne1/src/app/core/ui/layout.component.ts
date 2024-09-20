@@ -8,7 +8,7 @@ import { RouterLink } from "@angular/router";
     imports: [RouterModule],
     selector: 'app-layout',
     template:`
-    <header class="bg-gray-900 h-[80px] mb-8 w-full max-w-screen-lg mx-auto px-4">
+    <header class="border border-white rounded bg-gray-900 h-[80px] mb-8 w-full max-w-screen-lg mx-auto px-4">
       <nav class="flex items-center justify-between h-full" >
         <a class="text-2xl font-bold" routerLink="/tramites">Licencia de conducir</a>
         <button
