@@ -7,6 +7,6 @@ export default [
     },
     {
         path: 'form',
-        loadComponent: () => import('./tramite-form/tramite-form.component')
+        loadComponent: () => import('./tramite-form-primeraVez/tramite-form.component')
     }
 ] as Routes 

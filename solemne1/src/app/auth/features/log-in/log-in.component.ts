@@ -21,7 +21,6 @@ import { FormLogIn } from '../../../utils/interfaces';
 })
 
 
-
 export default class LogInComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
@@ -34,6 +33,8 @@ export default class LogInComponent {
   hasErrorRun(){
     return hasErrorRun(this.form)
   }
+
+
 
   form = this._formBuilder.group<FormLogIn>({
     run: this._formBuilder.control('', [
@@ -51,7 +52,7 @@ export default class LogInComponent {
     if (!temp) return
 
     const run = formatearRut(temp)
-
+    globalRun = run
     //console.log(run)
     //console.log(validarRut(run))
 
@@ -67,4 +68,4 @@ export default class LogInComponent {
   }
 }
 
-
+export let globalRun:string = ''
