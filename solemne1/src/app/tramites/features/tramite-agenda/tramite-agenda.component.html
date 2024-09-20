@@ -1,1 +1,112 @@
-<p>tramite-agenda works!</p>
+<div class="overflow-x-auto">
+  <section class="w-2/3 flex flex-col items-center justify-center px-6 mx-auto md:h-screen lg:py-0">
+    <table class="min-w-full table-auto border-collapse border border-white">
+      <thead>
+        <tr class="bg-gray-900">
+          <th class="border border-gray-300 p-2">Bloque</th>
+          <th class="border border-gray-300 p-2">Lunes</th>
+          <th class="border border-gray-300 p-2">Martes</th>
+          <th class="border border-gray-300 ">Miércoles</th>
+          <th class="border border-gray-300 p-2">Jueves</th>
+          <th class="border border-gray-300 p-2">Viernes</th>
+          <th class="border border-gray-300 p-2">Sábado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bloque of bloques; let i = index">
+          <td class="border border-gray-300 p-2">Bloque {{ i + 1 }}</td>
+
+          <!-- Lunes -->
+          <td class="border border-gray-300 p-2">
+            <button
+              type="button"
+              [ngClass]="{
+                'bg-green-700 text-white': selectedSlots['lunes'][i],
+                'bg-gray-200 text-gray-700': !selectedSlots['lunes'][i]
+              }"
+              class="p-2 w-full rounded-md focus:outline-none"
+              (click)="selectSlot('lunes', i)"
+            >
+              {{ bloque }}
+            </button>
+          </td>
+
+          <!-- Martes -->
+          <td class="border border-gray-300 p-2">
+            <button
+              type="button"
+              [ngClass]="{
+                'bg-green-700 text-white': selectedSlots['martes'][i],
+                'bg-gray-200 text-gray-700': !selectedSlots['martes'][i]
+              }"
+              class="p-2 w-full rounded-md focus:outline-none"
+              (click)="selectSlot('martes', i)"
+            >
+              {{ bloque }}
+            </button>
+          </td>
+
+          <!-- Miércoles -->
+          <td class="border border-gray-300 p-2">
+            <button
+              type="button"
+              [ngClass]="{
+                'bg-green-700 text-white': selectedSlots['miercoles'][i],
+                'bg-gray-200 text-gray-700': !selectedSlots['miercoles'][i]
+              }"
+              class="p-2 w-full rounded-md focus:outline-none"
+              (click)="selectSlot('miercoles', i)"
+            >
+              {{ bloque }}
+            </button>
+          </td>
+
+          <!-- Jueves -->
+          <td class="border border-gray-300 p-2">
+            <button
+              type="button"
+              [ngClass]="{
+                'bg-green-700 text-white': selectedSlots['jueves'][i],
+                'bg-gray-200 text-gray-700': !selectedSlots['jueves'][i]
+              }"
+              class="p-2 w-full rounded-md focus:outline-none"
+              (click)="selectSlot('jueves', i)"
+            >
+              {{ bloque }}
+            </button>
+          </td>
+
+          <!-- Viernes -->
+          <td class="border border-gray-300 p-2">
+            <button
+              type="button"
+              [ngClass]="{
+                'bg-green-700 text-white': selectedSlots['viernes'][i],
+                'bg-gray-200 text-gray-700': !selectedSlots['viernes'][i]
+              }"
+              class="p-2 w-full rounded-md focus:outline-none"
+              (click)="selectSlot('viernes', i)"
+            >
+              {{ bloque }}
+            </button>
+          </td>
+
+          <!-- Sábado -->
+          <td class="border border-gray-300 p-2">
+            <button
+              type="button"
+              [ngClass]="{
+                'bg-green-700 text-white': selectedSlots['sabado'][i],
+                'bg-gray-200 text-gray-700': !selectedSlots['sabado'][i]
+              }"
+              class="p-2 w-full rounded-md focus:outline-none"
+              (click)="selectSlot('sabado', i)"
+            >
+              {{ bloque }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
