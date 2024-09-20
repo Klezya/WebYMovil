@@ -20,5 +20,9 @@ export default [
     {
         path: 'reservar-hora',
         loadComponent: () => import('./tramite-agenda/tramite-agenda.component')
+    },
+    {
+        path: 'reservar-otra-hora',
+        loadComponent: () => import('../../calendar/calendar.component')
     }
 ] as Routes 
