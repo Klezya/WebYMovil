@@ -29,4 +29,8 @@ export default class TramiteAgendaComponent {
   isSelected(block: string): boolean {
     return this.selectedBlock === block;
   }
+
+  submit(){
+    console.log(this.selectedBlock)
+  }
 }

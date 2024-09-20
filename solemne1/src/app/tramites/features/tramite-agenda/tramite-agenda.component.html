@@ -1,8 +1,9 @@
-<div class="overflow-x-auto">
+<br><br>
+<div>
   <section
     class="w-2/3 flex flex-col items-center justify-center px-6 mx-auto md:h-screen lg:py-0"
   >
-    <table class="bg-gray-800 min-w-full table-auto border-collapse border border-gray-300">
+    <table class="min-w-full table-auto border-collapse border border-gray-300">
       <thead>
         <tr>
           <th class="py-3 px-4">Bloque</th>
@@ -15,12 +16,12 @@
           <td *ngFor="let day of days" class="py-3 px-6 border border-gray-300">
             <!-- Botón para cada bloque -->
             <button
-              class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none"
+              class="px-4 py-2 w-full rounded-md border border-gray-300 focus:outline-none"
               [ngClass]="{
-                'bg-teal-600 text-white': isSelected(block + day),
-                'bg-gray-200 text-gray-700': !isSelected(block + day)
+                'bg-teal-600 text-white': isSelected(block + '/' + day),
+                'bg-gray-200 text-gray-700': !isSelected(block + '/' + day)
               }"
-              (click)="selectBlock(block + day)"
+              (click)="selectBlock(block + '/' + day)"
             >
               {{ block }}
             </button>
@@ -28,5 +29,10 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <button (click)="submit()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        AGENDAR
+    </button>
+    <br><br>
   </section>
 </div>
