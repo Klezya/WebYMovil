@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormPrimeraVez } from '../../../utils/interfaces';
 import { globalRun } from '../../../auth/features/log-in/log-in.component'
 import { hasErrorRun, isRequiredRun, runValidator } from '../../../utils/validator';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-tramite-form',
@@ -12,6 +13,8 @@ import { hasErrorRun, isRequiredRun, runValidator } from '../../../utils/validat
   styleUrl: './tramite-form.component.css'
 })
 export default class TramiteFormPrimeraVezComponent {
+
+  fechaSeleccionada = Date;
 
   private _formBuilder = inject(FormBuilder)
   private run = globalRun
