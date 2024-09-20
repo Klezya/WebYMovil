@@ -12,11 +12,10 @@ import { Router } from '@angular/router';
 export default class TramiteListComponent {
 
   private _router = inject(Router)
-  tipoTramite: string = ''
+  tipoTramite: string = 'primeraVez'
 
   submit(){
     
-    console.log(this.tipoTramite)
     this._router.navigateByUrl('tramites/form')
     return
   }

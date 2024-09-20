@@ -18,7 +18,7 @@ export const isRequiredRun = (form: FormGroup) => {
 
 export const hasErrorRun = (form: FormGroup) => {
     const control = form.get('run')
-    return control && control.touched && !validarRut(control.value) 
+    return control && !validarRut(control.value) 
 }
 
 //Validators del formControl
