@@ -2,7 +2,7 @@
   <section
     class="w-2/3 flex flex-col items-center justify-center px-6 mx-auto md:h-screen lg:py-0"
   >
-    <table class="bg-gray-900 min-w-full table-auto border-collapse border border-gray-300">
+    <table class="bg-gray-800 min-w-full table-auto border-collapse border border-gray-300">
       <thead>
         <tr>
           <th class="py-3 px-4">Bloque</th>
@@ -17,7 +17,7 @@
             <button
               class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none"
               [ngClass]="{
-                'bg-green-700 text-white': isSelected(block + day),
+                'bg-teal-600 text-white': isSelected(block + day),
                 'bg-gray-200 text-gray-700': !isSelected(block + day)
               }"
               (click)="selectBlock(block + day)"
