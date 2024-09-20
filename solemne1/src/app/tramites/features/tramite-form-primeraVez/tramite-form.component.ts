@@ -2,12 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormPrimeraVez } from '../../../utils/interfaces';
 import { globalRun } from '../../../auth/features/log-in/log-in.component'
-<<<<<<< Updated upstream
-import { hasErrorRun, isRequiredRun, runValidator } from '../../../utils/validator';
-import { FormGroup } from '@angular/forms';
-=======
 import { hasErrorRun, isRequired, runValidator } from '../../../utils/validator';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-tramite-form',
