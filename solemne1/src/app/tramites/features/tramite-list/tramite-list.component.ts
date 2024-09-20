@@ -14,6 +14,7 @@ export default class TramiteListComponent {
   private _router = inject(Router)
   tipoTramite: string = 'primeraVez'
 
+<<<<<<< Updated upstream
   submit() {
     switch (this.tipoTramite) {
       case 'primeraVez':
@@ -30,6 +31,27 @@ export default class TramiteListComponent {
         console.error('Tipo de trámite inválido');
         break;
     }
+=======
+  submit(){
+    
+    switch (this.tipoTramite) {
+      case 'primeraVez':
+        this._router.navigateByUrl('tramites/nueva-licencia')
+        break
+      case 'renovacion':
+        this._router.navigateByUrl('tramites/renovacion')
+        break
+      case 'cambioDatos':
+        this._router.navigateByUrl('tramites/cambio-datos')
+        break
+      default:
+        console.log(this.tipoTramite)
+        break
+    }
+
+    
+    return
+>>>>>>> Stashed changes
   }
 
 }
