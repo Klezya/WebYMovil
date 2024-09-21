@@ -15,7 +15,7 @@ export default [
     },
     {
         path: 'cambio-datos',
-        loadComponent: () => import('./tramite-form-cambio-datos/tramite-form-cambio-datos.component')
+        loadComponent: () => import('./tramite-form-ver-eliminar-hora/tramite-form-cambio-datos.component')
     },
     {
         path: 'reservar-hora',

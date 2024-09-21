@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TramiteFormCambioDatosComponent } from './tramite-form-cambio-datos.component';
+import  TramiteFormCambioDatosComponent  from './tramite-form-cambio-datos.component';
 
 describe('TramiteFormCambioDatosComponent', () => {
   let component: TramiteFormCambioDatosComponent;
