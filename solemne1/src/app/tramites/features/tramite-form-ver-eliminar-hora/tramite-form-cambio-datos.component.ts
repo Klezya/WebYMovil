@@ -13,8 +13,7 @@ import PopUpComponent from "../../../core/ui/popup.component";
   selector: 'app-tramite-form-cambio-datos',
   standalone: true,
   imports: [ReactiveFormsModule, PopUpComponent],
-  templateUrl: './tramite-form-cambio-datos.component.html',
-  styleUrl: './tramite-form-cambio-datos.component.css'
+  templateUrl: './tramite-form-cambio-datos.component.html'
 })
 export default class TramiteFormCambioDatosComponent{
   fechaSeleccionada = Date;

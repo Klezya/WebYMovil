@@ -16,16 +16,6 @@ import { RouterLink } from '@angular/router';
           class="items-center font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
         >
           <li>
-            <a routerLink="/tramites/reservar-otra-hora" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
-              Calendario lucho
-            </a>
-          </li>
-          <li>
-            <a routerLink="/tramites/reservar-hora" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
-              Calendario vicente
-            </a>
-          </li>
-          <li>
             <a
               routerLink="/tramites"
               class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent "
@@ -47,7 +37,7 @@ import { RouterLink } from '@angular/router';
     <router-outlet />`,
 })
 
-
+//Este componente pertenece a la navBar dentro de la ruta 'tramites'
 export default class LayoutComponent {
   private _router = inject(Router);
   private _authState = inject(AuthStateService);
@@ -55,5 +45,5 @@ export default class LayoutComponent {
   async logOut() {
     await this._authState.logOut();
     this._router.navigateByUrl('auth/log-in');
-  }
+  }//Funcion para cerrar sesion
 }

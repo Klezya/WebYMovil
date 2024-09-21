@@ -29,6 +29,9 @@ import { Router } from '@angular/router';
     </div>
   `,
 })
+
+//Componente para mostrar informacion mas importante o mas precisa que solamente 'exito' o 'fracaso'
+//Componente se utiliza mayormente en casos especiales donde ya se tenga una cita registrada y se necesite otro curso de accion del usuario
 export default class PopUpComponent {
   private _tramiteService = inject(TramiteService);
   private _router = inject(Router);
@@ -55,12 +58,13 @@ export default class PopUpComponent {
     this.popupService.closePopup();
   }
 
-  async deleteCita(run: string) {
-    try {
-      await this._tramiteService.deleteCitasByRun(run);
-      this.closePopup();
-    } catch (error) {
-      console.error('Error al eliminar citas:', error);
-    }
-  }
+  //TODO FOR DOCUMENTATION
+  // async deleteCita(run: string) {
+  //   try {
+  //     await this._tramiteService.deleteCitasByRun(run);
+  //     this.closePopup();
+  //   } catch (error) {
+  //     console.error('Error al eliminar citas:', error);
+  //   }
+  // }
 }
