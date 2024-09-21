@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { PopupService } from './popup.service';
 import { TramiteService } from '../../tramites/data-acces/tramite.service';
 import { SharedService } from '../../utils/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -14,13 +15,14 @@ import { SharedService } from '../../utils/shared.service';
         <h1 class="text-xl font-bold text-white mb-2">{{ title }}</h1>
         <p class="text-base text-gray-300" >{{ message }}</p>
         <button class="mr-2 bg-blue-600 text-white border-none py-2 px-5 rounded cursor-pointer hover:bg-blue-700" (click)="closePopup()">Cerrar</button>
-        <button class="mx-2 bg-red-600 text-white border-none py-2 px-5 rounded cursor-pointer hover:bg-red-700" (click)="deleteCita(this._shared.getRun())">Eliminar Cita</button>
+        <button class="mx-2 bg-red-600 text-white border-none py-2 px-5 rounded cursor-pointer hover:bg-red-700" (click)="modificarCita()">Modificar Cita</button>
       </div>
     </div>
   `,
 })
 export default class PopUpComponent {
   private _tramiteService = inject(TramiteService)
+  private _router = inject(Router)
   _shared = inject(SharedService)
 
   title: string = '';
@@ -42,6 +44,12 @@ export default class PopUpComponent {
 
   closePopup() {
     this.popupService.closePopup();
+  }
+
+
+  modificarCita(){
+    this.closePopup()
+    this._router.navigateByUrl('tramites/modificar-cita')
   }
 
   async deleteCita(run: string) {

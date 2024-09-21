@@ -14,7 +14,7 @@ export default [
         loadComponent: () => import('./tramite-form-renovacion/tramite-form-renovacion.component')
     },
     {
-        path: 'cambio-datos',
+        path: 'modificar-cita',
         loadComponent: () => import('./tramite-form-ver-eliminar-hora/tramite-form-cambio-datos.component')
     },
     {
