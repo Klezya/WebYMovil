@@ -21,19 +21,20 @@ export default class TramiteAgendaComponent implements OnInit {
   loading = signal(false)
 
   //Se crea una cita vacia como plantilla y variables para manejar la agenda de citas
-  cita: CitaLicencia = { run: '', name: '', fecha: new Date(), tramite: '', agenda: '' };
-  selectedBlock: string = '';
-  disabledBlocks: string[] = [];
-  days: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  cita: CitaLicencia = { run: '', name: '', fecha: new Date(), tramite: '', agenda: '' }
+  selectedBlock: string = ''
+  disabledBlocks: string[] = []
+  days: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
   blocks: string[] = [
     '08:00', '08:30', '09:00', '09:30', '10:00', '10:30',
     '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00'
-  ];
+  ]
 
   //Carga los bloques ya reservados y trae la cita desde el servicio compartido (SHARED)
   ngOnInit(): void {
     this.cita = this._shared.getCitaLicencia()
     this.loadDisabledBlocks()
+    this.selectedBlock = this.cita.agenda
   }
 
   // Cargar los bloques ya reservados desde Firebase
@@ -52,7 +53,6 @@ export default class TramiteAgendaComponent implements OnInit {
   selectBlock(block: string) {
     if (!this.isDisabled(block)) {
       this.selectedBlock = this.selectedBlock === block ? '' : block;
-      console.log(this.selectedBlock)
     }
   }
 
@@ -63,6 +63,9 @@ export default class TramiteAgendaComponent implements OnInit {
 
   // Método para saber si un bloque está reservado
   isDisabled(block: string): boolean {
+    if(block === this._shared.getCitaLicencia().agenda) {
+      return false
+    }
     return this.disabledBlocks.includes(block);
   }
 
@@ -84,8 +87,14 @@ export default class TramiteAgendaComponent implements OnInit {
       //Si el bloque seleccionado no es nulo se verifica y agrega la cita a la base de datos
       if (this.selectedBlock != '') {
         this.cita.agenda = this.selectedBlock;
-        
-        if (this.citaNotNull()) {
+        //Bloque por si se viene por renovacion
+        if (this._shared.getTramite() === 'cambioDatos' && this.citaNotNull()){
+          await this._tramiteService.updateCita(this.cita)
+          this._router.navigateByUrl('tramites');
+          toast.success('Cita actualizada correctamente', {
+            position: 'top-center'
+          });
+        } else if (this.citaNotNull()) { //Bloque por si se viene por primera licencia o renovacion
           await this._tramiteService.create(this.cita);
           this._router.navigateByUrl('tramites');
           toast.success('Cita agendada correctamente', {
@@ -97,7 +106,6 @@ export default class TramiteAgendaComponent implements OnInit {
           })
           this._router.navigateByUrl('tramites')
         }
-
       } else {
         this._popup.showPopup('Error', 'Seleccione una hora');
       }
@@ -105,7 +113,6 @@ export default class TramiteAgendaComponent implements OnInit {
       console.log(error);
     } finally {
       this.loading.set(false)
-      console.log(this.cita)
     }
   }
 }

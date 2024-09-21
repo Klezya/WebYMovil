@@ -56,10 +56,10 @@ export default class TramiteFormPrimeraVezComponent {
     try {
       //Se crea un objeto cita
       const cita: CitaLicencia = {
-        run: run,
+        run: this._shared.getRun(),
         name: name,
         fecha: date,
-        tramite: this._shared.globalTramite,
+        tramite: this._shared.getTramite(),
         agenda: ''
       }
       //Se verifica si el RUN ya tiene una cita registrada

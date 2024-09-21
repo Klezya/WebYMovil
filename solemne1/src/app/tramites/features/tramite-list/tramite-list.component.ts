@@ -13,11 +13,13 @@ import PopUpComponent from "../../../core/ui/popup.component";
 export default class TramiteListComponent {
 
   private _router = inject(Router)
-  _shared = inject(SharedService)
+  private _shared = inject(SharedService)
+  tipoTramite = this._shared.getTramite()
 
   //Funcion submit, dependiendo el tramite elegido se redirecciona
   submit(){
-    switch (this._shared.globalTramite) {
+    this._shared.setTramite(this.tipoTramite)
+    switch (this._shared.getTramite()) {
       case 'primeraVez':
         this._router.navigateByUrl('tramites/nueva-licencia')
         break
@@ -28,7 +30,7 @@ export default class TramiteListComponent {
         this._router.navigateByUrl('tramites/modificar-cita')
         break
       default:
-        console.log(this._shared.globalTramite)
+        console.log(this._shared.getTramite())
         break
     }
     return

@@ -9,8 +9,8 @@ import { CitaLicencia } from '../tramites/data-acces/tramite.service';
 //SHARED SERVICE sirve para compartir y mantener informacion a travez de los componentes, como por ejemplo el tipo de tramite y el run,
 //ademas del formulario CitaLicencia
 export class SharedService {
-  globalRun: string = ''
-  globalTramite: string = 'primeraVez'
+  private globalRun: string = ''
+  private globalTramite: string = 'primeraVez'
   private _citaLicencia: CitaLicencia | null = null;
 
   setRun(run: string){
@@ -29,5 +29,14 @@ export class SharedService {
   getCitaLicencia(): CitaLicencia {
     return this._citaLicencia || {run:'',name:'', fecha:new Date(),tramite: '', agenda: ''};
   }//Funcion que retorna la cita compartida
+
+  setTramite(tramite:string ){
+    this.globalTramite = tramite
+    localStorage.setItem('tramite',this.globalTramite)
+  }
+
+  getTramite():string {
+    return this.globalTramite || localStorage.getItem('tramite') || ''
+  }
   
 }

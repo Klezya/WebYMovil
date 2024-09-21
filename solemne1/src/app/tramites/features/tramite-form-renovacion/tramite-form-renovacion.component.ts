@@ -54,10 +54,10 @@ export default class TramiteFormRenovacionComponent {
     this.loading.set(true)
     try {
       const cita: CitaLicencia = {
-        run: run,
+        run: this._shared.getRun(),
         name: name,
         fecha: date,
-        tramite: this._shared.globalTramite,
+        tramite: this._shared.getTramite(),
         agenda: ''
       }
       

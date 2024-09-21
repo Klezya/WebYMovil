@@ -1,6 +1,5 @@
 import { inject, Injectable } from "@angular/core"
-import { addDoc, collection, Firestore, where, query, getDocs, deleteDoc, doc, DocumentSnapshot } from "@angular/fire/firestore"
-import { from, map, Observable } from "rxjs"
+import { addDoc, collection, Firestore, where, query, getDocs, updateDoc, doc } from "@angular/fire/firestore"
 
 
 //Se crea la interfaz que sera manejada por la base de datos
@@ -35,7 +34,7 @@ export class TramiteService {
         return !querySnapshot.empty; 
     }// Retorna 'true' si hay documentos asociados al run, 'false' si no se encuentran
     
-    // TO DO FOR DOCUMENTATION 
+    // TO DO FOR DOCUMENTATION NO IMPLEMENTAR
     // async deleteCitasByRun(run: string): Promise<void> {
     //     const q = query(this._collection, where('run', '==', run));
     //     const querySnapshot = await getDocs(q);
@@ -59,4 +58,33 @@ export class TramiteService {
         });
         return citasTomadas; 
     }// Retorna un arreglo con las agendas ocupadas (ej: '12:30/Jueves')
+
+    // Obtener la cita por el RUN del usuario
+    async getCitaByRun(run: string): Promise<CitaLicencia> {
+        const q = query(this._collection, where('run', '==', run));
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+            const data = querySnapshot.docs[0].data() as CitaLicencia;
+            return data;
+        }
+        return { run: '', name: '', fecha: new Date(), tramite: '', agenda: '' }; // Retorna null si no se encuentra la cita
+    }
+
+    async updateCita(cita: CitaLicencia): Promise<void> {
+        const q = query(this._collection, where('run', '==', cita.run));
+        const querySnapshot = await getDocs(q);
+        
+        if (!querySnapshot.empty) {
+          const docRef = doc(this._firestore, `${PATH}/${querySnapshot.docs[0].id}`);
+          await updateDoc(docRef, {
+            name: cita.name,
+            fecha: cita.fecha,
+            tramite: cita.tramite,
+            agenda: cita.agenda
+          });
+        } else {
+          throw new Error('Cita no encontrada');
+        }
+      }
+      
 }
