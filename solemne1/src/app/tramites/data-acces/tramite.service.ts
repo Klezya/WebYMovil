@@ -60,4 +60,17 @@ export class TramiteService {
 
         await Promise.all(deletePromises); // Espera a que todas las eliminaciones se completen
     }
+
+    // Nueva función: Obtener citas por bloque (agenda)
+    async getCitasByAgenda(): Promise<string[]> {
+        const querySnapshot = await getDocs(this._collection);
+        const citasTomadas: string[] = [];
+        
+        querySnapshot.forEach((doc) => {
+            const data = doc.data() as CitaLicencia;
+            citasTomadas.push(data.agenda); // Guardar las horas (agenda) ya reservadas
+        });
+
+        return citasTomadas; // Retorna un arreglo con las agendas ocupadas (ej: '12:30/Jueves')
+    }
 }

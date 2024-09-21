@@ -53,7 +53,7 @@ export default class TramiteFormPrimeraVezComponent {
     let {name, run, date} = this.form.getRawValue()
 
     if (!run || !name || !date) {
-      console.log(this.form.getRawValue())
+      //console.log(this.form.getRawValue())
       return
     }
 
@@ -68,7 +68,7 @@ export default class TramiteFormPrimeraVezComponent {
       
       const existe = await this.verificarDisponibilidad(run)
       if (!!existe) return
-      console.log(cita)
+      //console.log(cita)
       this._shared.setCitaLicencia(cita)
       this._router.navigateByUrl('tramites/reservar-hora')
 
