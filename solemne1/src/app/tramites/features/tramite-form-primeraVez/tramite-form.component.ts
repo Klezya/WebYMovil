@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormPrimeraVez } from '../../../utils/interfaces';
-import { globalRun } from '../../../auth/features/log-in/log-in.component'
-import { hasErrorRun, isRequired, runValidator } from '../../../utils/validator';
+import { FormPrimeraLicencia } from '../../../utils/interfaces';
+import { datePrimeraVez, hasErrorRun, isRequired, notAdult, runValidator } from '../../../utils/validator';
+import { CitaLicencia, TramiteService } from '../../data-acces/tramite.service';
+import { SharedService } from '../../../utils/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tramite-form',
@@ -16,12 +18,17 @@ export default class TramiteFormPrimeraVezComponent {
   fechaSeleccionada = Date;
 
   private _formBuilder = inject(FormBuilder)
-  private run = globalRun
+  private _shared = inject(SharedService)
+  private _tramiteService = inject(TramiteService)
+  private _router = inject(Router)
 
-  form = this._formBuilder.group<FormPrimeraVez>({
+  loading = signal(false)
+
+
+  form = this._formBuilder.group<FormPrimeraLicencia>({
     name: this._formBuilder.control('', Validators.required),
-    run: this._formBuilder.control(this.run, [Validators.required, runValidator]),
-    date: this._formBuilder.control(null, Validators.required)
+    run: this._formBuilder.control({value: this._shared.getRun(), disabled: true},[Validators.required, runValidator]),
+    date: this._formBuilder.control(null, [Validators.required, datePrimeraVez])
   })
   
   isRequired(field: 'run' | 'name' | 'date'){
@@ -32,9 +39,40 @@ export default class TramiteFormPrimeraVezComponent {
     return hasErrorRun(this.form)
   }
 
-  submit(){
+  notAdult(){
+    return notAdult(this.form)
+  }
 
-    console.log(this.form.value)
+  async submit(){
+    if (this.form.invalid) {
+      return this.form.getRawValue()
+    }
+    let {name, run, date} = this.form.getRawValue()
+
+    if (!run || !name || !date) {
+      console.log(this.form.getRawValue())
+      return
+    }
+
+    try {
+      this.loading.set(true)
+      const cita: CitaLicencia = {
+        run: run,
+        name: name,
+        fecha: date,
+        tramite: this._shared.globalTramite
+      } 
+      
+      await this._tramiteService.create(cita)
+      this._router.navigateByUrl('tramites/reservar-hora')
+
+    } catch (error) {
+      console.log(error)
+    } finally {
+      this.loading.set(false)
+    } 
+
+
     return
   }
 

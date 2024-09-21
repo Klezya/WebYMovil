@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidationErrors } from "@angular/forms";
+import { AbstractControl, Form, FormGroup, ValidationErrors } from "@angular/forms";
 import { formatRut, validateRut } from "@fdograph/rut-utilities";
 
 
@@ -22,6 +22,25 @@ export const hasErrorRun = (form: FormGroup) => {
     return control && !validarRut(control.value) 
 }
 
+export const notAdult = (form: FormGroup) =>{
+    const date = new Date(form.get('date')?.value)
+    const today = new Date()
+    const minAdultDate = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+    );
+    return date && !(date <= minAdultDate) 
+}
+
+export const notRenovable = (form: FormGroup) => {
+    const date = new Date(form.get('date')?.value)
+    const today = new Date()
+
+    return date && (date <= today)
+}
+
+
 //Validators del formControl
 export const runValidator = (control: AbstractControl): ValidationErrors | null => {
     const run = control.value;
@@ -30,5 +49,30 @@ export const runValidator = (control: AbstractControl): ValidationErrors | null 
       return { invalidRun: true };
     }
     return null;
-  };
-  
+};
+
+
+export const datePrimeraVez = (control: AbstractControl): ValidationErrors | null =>{
+    const date = new Date(control.value)
+    const today = new Date()
+    const minAdultDate = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+      );
+    
+    if (!date || !(date <= minAdultDate)) {
+        return { notAdult: true}
+    }
+    return null
+}
+
+export const dateRenovacion = (control: AbstractControl): ValidationErrors | null => {
+    const date = new Date(control.value)
+    const today = new Date()
+
+    if (!date || !(date <= today)){
+        return { notRenovable: true}
+    }
+    return null
+}

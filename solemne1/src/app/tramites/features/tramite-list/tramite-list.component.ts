@@ -1,6 +1,7 @@
 import { Component, inject} from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedService } from '../../../utils/shared.service';
 
 @Component({
   selector: 'app-tramite-list',
@@ -12,11 +13,11 @@ import { Router } from '@angular/router';
 export default class TramiteListComponent {
 
   private _router = inject(Router)
-  tipoTramite: string = 'primeraVez'
+  _shared = inject(SharedService)
 
   submit(){
     
-    switch (this.tipoTramite) {
+    switch (this._shared.globalTramite) {
       case 'primeraVez':
         this._router.navigateByUrl('tramites/nueva-licencia')
         break
@@ -27,7 +28,7 @@ export default class TramiteListComponent {
         this._router.navigateByUrl('tramites/cambio-datos')
         break
       default:
-        console.log(this.tipoTramite)
+        console.log(this._shared.globalTramite)
         break
     }
 

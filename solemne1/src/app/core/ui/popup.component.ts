@@ -20,7 +20,7 @@ import { Component, Injectable } from '@angular/core';
 export default class PopUpComponent {
   title: string = 'titulo';
   message: string = 'mensaje';  
-  isVisible: boolean = true;
+  isVisible: boolean = false;
 
   showPopup() {
     this.isVisible = true;

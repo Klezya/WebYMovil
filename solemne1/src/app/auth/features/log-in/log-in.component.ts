@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../data-access/auth.service';
 import { Router } from '@angular/router';
-import { formatearRut, hasErrorRun, isRequired, runValidator, validarRut } from '../../../utils/validator';
+import { formatearRut, hasErrorRun, isRequired, runValidator } from '../../../utils/validator';
 import { toast } from 'ngx-sonner';
 import { FormLogIn } from '../../../utils/interfaces';
+import { SharedService } from '../../../utils/shared.service';
 
 
 @Component({
@@ -25,6 +25,8 @@ export default class LogInComponent {
   private _formBuilder = inject(FormBuilder);
   private _authService = inject(AuthService);
   private _router = inject(Router);
+
+  private _shared = inject(SharedService)
 
   isRequiredRun(){
     return isRequired('run',this.form)
@@ -52,9 +54,7 @@ export default class LogInComponent {
     if (!temp) return
 
     const run = formatearRut(temp)
-    globalRun = run
-    //console.log(run)
-    //console.log(validarRut(run))
+    this._shared.setRun(run)
 
     try {
       if (!run) return
@@ -69,5 +69,3 @@ export default class LogInComponent {
     }
   }
 }
-
-export let globalRun:string = ''
