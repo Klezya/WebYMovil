@@ -12,8 +12,10 @@ export class SharedService {
     localStorage.setItem('run',this.globalRun)
   }
 
-  getRun():string | null{
-    return this.globalRun || localStorage.getItem('run')
+  getRun():string{
+    return this.globalRun || localStorage.getItem('run') || ''
   }
+
+  
   
 }

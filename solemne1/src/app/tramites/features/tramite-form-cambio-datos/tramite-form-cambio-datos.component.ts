@@ -17,7 +17,7 @@ export default class TramiteFormCambioDatosComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this._tramiteService.getCitaByRun(this._shared.globalRun).subscribe((data) => {
+    this._tramiteService.getCitaByRun(this._shared.getRun()).subscribe((data) => {
       this.citas = data
       console.log(this.citas)
     })

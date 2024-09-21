@@ -5,11 +5,13 @@ import { datePrimeraVez, hasErrorRun, isRequired, notAdult, runValidator } from 
 import { CitaLicencia, TramiteService } from '../../data-acces/tramite.service';
 import { SharedService } from '../../../utils/shared.service';
 import { Router } from '@angular/router';
+import { PopupService } from '../../../core/ui/popup.service';
+import PopUpComponent from "../../../core/ui/popup.component";
 
 @Component({
   selector: 'app-tramite-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PopUpComponent],
   templateUrl: './tramite-form.component.html',
   styleUrl: './tramite-form.component.css'
 })
@@ -21,6 +23,7 @@ export default class TramiteFormPrimeraVezComponent {
   private _shared = inject(SharedService)
   private _tramiteService = inject(TramiteService)
   private _router = inject(Router)
+  private _popup = inject(PopupService)
 
   loading = signal(false)
 
@@ -61,10 +64,13 @@ export default class TramiteFormPrimeraVezComponent {
         name: name,
         fecha: date,
         tramite: this._shared.globalTramite
-      } 
+      }
       
+      const existe = await this.verificarDisponibilidad(cita.run)
+      if (!!existe) return
+
       await this._tramiteService.create(cita)
-      this._router.navigateByUrl('tramites/reservar-hora')
+      //this._router.navigateByUrl('tramites/reservar-hora')
 
     } catch (error) {
       console.log(error)
@@ -72,8 +78,16 @@ export default class TramiteFormPrimeraVezComponent {
       this.loading.set(false)
     } 
 
-
     return
   }
 
+  async verificarDisponibilidad(run:string){
+    const existe = await this._tramiteService.existsByRun(run);
+
+    if (existe) {
+      this._popup.showPopup('Error','Ya tienes una cita agendada a tu RUN');
+      return true
+    }
+    return false
+  }
 }

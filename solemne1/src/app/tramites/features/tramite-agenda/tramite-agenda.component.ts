@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component} from '@angular/core';
+import { Component, inject} from '@angular/core';
 import PopUpComponent from '../../../core/ui/popup.component';
+import { PopupService } from '../../../core/ui/popup.service';
 
 @Component({
   selector: 'app-tramite-agenda',
@@ -10,6 +11,8 @@ import PopUpComponent from '../../../core/ui/popup.component';
   styleUrl: './tramite-agenda.component.css'
 })
 export default class TramiteAgendaComponent {
+  private _popup = inject(PopupService)
+
   selectedBlock: string | null = null;
 
   // Datos de la tabla de horarios
@@ -31,6 +34,9 @@ export default class TramiteAgendaComponent {
   }
 
   submit(){
+    if (!this.selectedBlock){
+      this._popup.showPopup('Titulo','Cuerpo')
+    }
     
     console.log(this.selectedBlock)
   }
