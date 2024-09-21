@@ -33,12 +33,14 @@ export const notAdult = (form: FormGroup) =>{
     return date && !(date <= minAdultDate) 
 }
 
-export const notRenovable = (form: FormGroup) => {
-    const date = new Date(form.get('date')?.value)
-    const today = new Date()
 
-    return date && (date <= today)
-}
+
+export const notExpired = (form: FormGroup) => {
+    const date = new Date(form.get('date')?.value); // Fecha ingresada
+    const today = new Date(); // Fecha actual
+    
+    return date && date < today ? null : { expired: true }; // Devuelve null si la fecha no ha pasado
+  };
 
 
 //Validators del formControl
