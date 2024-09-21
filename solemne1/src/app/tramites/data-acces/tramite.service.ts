@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core"
-import { addDoc, collection, Firestore, collectionData, where, query, getDocs, deleteDoc, doc } from "@angular/fire/firestore"
-import { Observable } from "rxjs"
+import { addDoc, collection, Firestore, where, query, getDocs, deleteDoc, doc, DocumentSnapshot } from "@angular/fire/firestore"
+import { from, map, Observable } from "rxjs"
 
 
 
@@ -9,10 +9,11 @@ export interface CitaLicencia {
     name:string
     fecha:Date
     tramite:string
+    agenda:string
 }
 
 
-export type CitaLicenciaCreate = Omit<CitaLicencia, 'id'>
+export type CitaLicenciaCreate = Omit<CitaLicencia, 'agenda'>
 
 const PATH = 'CitasLicencias'
 
@@ -24,9 +25,18 @@ export class TramiteService {
     private _collection = collection(this._firestore,PATH)
 
 
-    getCitaByRun(run: string): Observable<CitaLicencia[]>{
-        const q = query(this._collection, where('run','==',run))
-        return collectionData(q, {tramite: 'tramite'}) as Observable<CitaLicencia[]>
+    getCitaByRun(run: string): Observable<CitaLicencia | null> {
+        const q = query(this._collection, where('run', '==', run));
+
+        return from(getDocs(q)).pipe(
+            map((querySnapshot) => {
+                if (!querySnapshot.empty) {
+                    const docSnap = querySnapshot.docs[0];
+                    return docSnap.data() as CitaLicencia; // Retorna la primera cita encontrada
+                }
+                return null; // Retorna null si no se encuentra ninguna cita
+            })
+        );
     }
 
     create(cita: CitaLicencia){

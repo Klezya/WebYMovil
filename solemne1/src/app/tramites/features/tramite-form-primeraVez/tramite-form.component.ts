@@ -58,19 +58,19 @@ export default class TramiteFormPrimeraVezComponent {
     }
 
     try {
-      this.loading.set(true)
       const cita: CitaLicencia = {
         run: run,
         name: name,
         fecha: date,
-        tramite: this._shared.globalTramite
+        tramite: this._shared.globalTramite,
+        agenda: ''
       }
       
-      const existe = await this.verificarDisponibilidad(cita.run)
+      const existe = await this.verificarDisponibilidad(run)
       if (!!existe) return
-
-      await this._tramiteService.create(cita)
-      //this._router.navigateByUrl('tramites/reservar-hora')
+      console.log(cita)
+      this._shared.setCitaLicencia(cita)
+      this._router.navigateByUrl('tramites/reservar-hora')
 
     } catch (error) {
       console.log(error)

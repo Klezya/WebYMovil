@@ -9,18 +9,7 @@ import { SharedService } from '../../../utils/shared.service';
   templateUrl: './tramite-form-cambio-datos.component.html',
   styleUrl: './tramite-form-cambio-datos.component.css'
 })
-export default class TramiteFormCambioDatosComponent implements OnInit{
-  private _tramiteService = inject(TramiteService)
-  private _shared = inject(SharedService)
+export default class TramiteFormCambioDatosComponent{
   
-  citas: CitaLicencia[] = []
-
-
-  ngOnInit(): void {
-    this._tramiteService.getCitaByRun(this._shared.getRun()).subscribe((data) => {
-      this.citas = data
-      console.log(this.citas)
-    })
-  }
 
 }
