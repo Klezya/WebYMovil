@@ -59,7 +59,9 @@ export default class LogInComponent {
     try {
       if (!run) return
       await this._authService.logIn()
-      toast.success('Iniciado Correctamente')
+      toast.success('Rut registrado correctamente', {
+        position: 'top-center'
+      })
       this._router.navigateByUrl('/tramites')
 
     } catch (error) {

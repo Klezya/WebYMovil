@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import PopUpComponent from '../../../core/ui/popup.component';
 
 @Component({
   selector: 'app-tramite-agenda',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PopUpComponent],
   templateUrl: './tramite-agenda.component.html',
   styleUrl: './tramite-agenda.component.css'
 })
 export default class TramiteAgendaComponent {
-
   selectedBlock: string | null = null;
 
   // Datos de la tabla de horarios
@@ -31,6 +31,7 @@ export default class TramiteAgendaComponent {
   }
 
   submit(){
+    
     console.log(this.selectedBlock)
   }
 }

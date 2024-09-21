@@ -46,6 +46,8 @@ import { RouterLink } from '@angular/router';
     </header>
     <router-outlet />`,
 })
+
+
 export default class LayoutComponent {
   private _router = inject(Router);
   private _authState = inject(AuthStateService);
