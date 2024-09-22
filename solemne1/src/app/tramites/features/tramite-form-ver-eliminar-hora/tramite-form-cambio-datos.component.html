@@ -9,28 +9,28 @@
         <h1
           class="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white"
         >
-          Obtener licencia por Primera Vez
+          Cita Registrada
         </h1>
-        <form class="space-y-4 md:space-y-6" action="#" [formGroup]="form" (submit)="submit()">
+        <form class="space-y-4 md:space-y-6" action="#" [formGroup]="form">
           <div>
-            <label
-              for="run"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Run: </label
-            >
-            <input
-              type="run"
-              name="run"
-              id="run"
-              formControlName="run"
-              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="12345678-k"
-            />
-            @if(isRequired('run')){
-            <small class="text-red-400"> Este campo es requrido</small>
-            } @if(hasErrorRun()){
-            <small class="text-red-400"> Este RUN no es valido</small>
-            }
+              <label
+                for="run"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Run: </label
+              >
+              <input
+                type="run"
+                name="run"
+                id="run"
+                formControlName="run"
+                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="12345678-k"
+              />
+              @if(isRequired('run')){
+              <small class="text-red-400"> Este campo es requrido</small>
+              } @if(hasErrorRun()){
+              <small class="text-red-400"> Este RUN no es valido</small>
+              }
           </div>
           <div>
             <label
@@ -54,28 +54,44 @@
             <label
               for="date"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Fecha de nacimiento</label
+              >{{this.cita.tramite === 'primeraVez'? 'Fecha de nacimiento' : 'Fecha de Vencimiento (Licencia Actual)'}}</label
             >
             <input
               type="date"
               name="date"
               id="date"
               formControlName="date"
-              placeholder="dd/mm/yyyy"
               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
-            @if(isRequired('date')){
-              <small class="text-red-400"> Este campo es requrido</small>
-            } @if (notAdult()) {
-              <small class="text-red-400"> Debes ser mayor de 18 años</small>
-            }
+            <small *ngIf="isRequired('date')" class="text-red-400">
+              Este campo es requerido</small
+            >
+            <small
+              *ngIf="this.cita.tramite === 'primeraVez' && notAdult()"
+              class="text-red-400"
+            >
+              Debe ser mayor de edad</small
+            >
+            <small
+              *ngIf="this.cita.tramite === 'renovacion' && notExpired()"
+              class="text-red-400"
+            >
+              La licencia de conducir no ha expirado aún</small
+            >
           </div>
           <button
             [disabled]="loading()"
-            type="submit"
+            (click)="submit()"
             class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            {{loading() ? 'Enviando...' : 'Enviar formulario'}}
+            {{loading() ? 'Procesando...' : 'Actualizar Datos'}}
+          </button>
+          <button
+            [disabled]="loading()"
+            (click)="deleteCita()"
+            class="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          >
+            {{loading() ? 'Procesando...' : 'Eliminar Cita'}}
           </button>
         </form>
       </div>

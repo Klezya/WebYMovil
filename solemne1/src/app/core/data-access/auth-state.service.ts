@@ -1,10 +1,12 @@
 import { inject, Injectable } from "@angular/core";
-import { Auth, authState, deleteUser, signOut, User, user } from "@angular/fire/auth";
+import { Auth, authState, deleteUser, signOut} from "@angular/fire/auth";
 import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
+
+//Servicio creado para manejar el estado de la cuenta autenticada en firebase
 export class AuthStateService {
 
     private _auth = inject(Auth)
@@ -16,9 +18,7 @@ export class AuthStateService {
 
     //LogOut que elimina la cuenta anonima para evitar sobrecarga de Cuentas en firebase
     async logOut(){
-
         const user = this._auth.currentUser;
-
         if (user && user.isAnonymous) {
             try {
                 await deleteUser(user);
