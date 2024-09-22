@@ -54,7 +54,7 @@
             <label
               for="date"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Fecha de Vencimiento (Licencia Actual)</label
+              >{{this.cita.tramite === 'primeraVez'? 'Fecha de nacimiento' : 'Fecha de Vencimiento (Licencia Actual)'}}</label
             >
             <input
               type="date"
