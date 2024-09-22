@@ -4,16 +4,20 @@ npm= 10.8
 -------------
 
 
-//Manejo de firebase
-ng add @angular/fire  //opciones instaladas: (firestore, auth)
-npm install -g firebase-tools
+npm install
 
-//Para estilos
-npm install -D tailwindcss
-npx tailwindcss init
+{ //Si algo no funciona ejecutar lo siguiente:
+    //Manejo de firebase
+    ng add @angular/fire  //opciones instaladas: (firestore, auth)
+    npm install -g firebase-tools
 
-//Para alertas mas lindas
-npm install --save ngx-sonner
+    //Para estilos
+    npm install -D tailwindcss
+    npx tailwindcss init
 
-//Verificar ruts
-npm install --save @fdograph/rut-utilities
+    //Para alertas mas lindas
+    npm install --save ngx-sonner
+
+    //Verificar ruts
+    npm install --save @fdograph/rut-utilities
+}
