@@ -43,7 +43,6 @@ export default class TramiteFormCambioDatosComponent implements OnInit{
         date: this.cita.fecha
       })
     } else {
-      console.log('aaaa')
       this._popup.showPopup('Error', 'No se encontró una cita para el RUN proporcionado.');
       this._router.navigateByUrl('tramites')
     }
@@ -65,9 +64,7 @@ export default class TramiteFormCambioDatosComponent implements OnInit{
   }
 
   async submit(){
-    if (this.form.invalid) {
-      return console.log('a',this.form.getRawValue())
-    }
+    if (this.form.invalid) return
 
     let {name, run, date} = this.form.getRawValue()
     if (!run || !name || !date) return
