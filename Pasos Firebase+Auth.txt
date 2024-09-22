@@ -1,6 +1,6 @@
-node= 20
-ng= 18
-nom= 10
+node= 20.17 LTS
+ng= 18.2
+npm= 10.8
 -------------
 
 
@@ -11,13 +11,9 @@ npm install -g firebase-tools
 //Para estilos
 npm install -D tailwindcss
 npx tailwindcss init
-(seguir instrucciones tailwiind instalation CLI)
 
 //Para alertas mas lindas
-npm install ngx-sonner
+npm install --save ngx-sonner
 
 //Verificar ruts
 npm install --save @fdograph/rut-utilities
-
-
-
