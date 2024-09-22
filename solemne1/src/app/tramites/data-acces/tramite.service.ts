@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core"
-import { addDoc, collection, Firestore, where, query, getDocs, updateDoc, doc } from "@angular/fire/firestore"
+import { addDoc, collection, Firestore, where, query, getDocs, updateDoc, doc, deleteDoc } from "@angular/fire/firestore"
 
 
 //Se crea la interfaz que sera manejada por la base de datos
@@ -34,18 +34,18 @@ export class TramiteService {
         return !querySnapshot.empty; 
     }// Retorna 'true' si hay documentos asociados al run, 'false' si no se encuentran
     
-    // TO DO FOR DOCUMENTATION NO IMPLEMENTAR
-    // async deleteCitasByRun(run: string): Promise<void> {
-    //     const q = query(this._collection, where('run', '==', run));
-    //     const querySnapshot = await getDocs(q);
+    //Esta funcion borra TODAS las citas relacionadas a un RUN (porque no deberias tener mas de una cita a la vez)
+    async deleteCitasByRun(run: string): Promise<void> {
+        const q = query(this._collection, where('run', '==', run));
+        const querySnapshot = await getDocs(q);
         
-    //     const deletePromises = querySnapshot.docs.map(docSnap => {
-    //         const docRef = doc(this._firestore, `${PATH}/${docSnap.id}`);
-    //         return deleteDoc(docRef);
-    //     });
+        const deletePromises = querySnapshot.docs.map(docSnap => {
+            const docRef = doc(this._firestore, `${PATH}/${docSnap.id}`);
+            return deleteDoc(docRef);
+        });
 
-    //     await Promise.all(deletePromises); // Espera a que todas las eliminaciones se completen
-    // }
+        await Promise.all(deletePromises); // Espera a que todas las eliminaciones se completen
+    }
 
     //Funcion que busca todas las citas agendadas en la base de datos,se utiliza en 'tramites/reservar-hora'
     async getCitasByAgenda(): Promise<string[]> {

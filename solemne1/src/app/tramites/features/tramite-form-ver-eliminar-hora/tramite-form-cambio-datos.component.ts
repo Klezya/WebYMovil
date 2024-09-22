@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { PopupService } from '../../../core/ui/popup.service';
 import PopUpComponent from "../../../core/ui/popup.component";
 import { CommonModule } from '@angular/common';
+import { toast } from 'ngx-sonner';
 
 
 @Component({
@@ -93,6 +94,18 @@ export default class TramiteFormCambioDatosComponent implements OnInit{
       this.loading.set(false)
     } 
     return
+  }
+
+  async deleteCita() {
+    try {
+      await this._tramiteService.deleteCitasByRun(this._shared.getRun());
+      toast.success('Se ha eliminado la cita correctamente', {
+        position: 'top-center'
+      })
+      this._router.navigateByUrl('tramites')
+    } catch (error) {
+      console.error('Error al eliminar citas:', error);
+    }
   }
 
   async verificarDisponibilidad(run:string){

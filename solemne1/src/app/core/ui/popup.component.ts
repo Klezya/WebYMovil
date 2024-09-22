@@ -58,13 +58,4 @@ export default class PopUpComponent {
     this.popupService.closePopup();
   }
 
-  //TODO FOR DOCUMENTATION
-  // async deleteCita(run: string) {
-  //   try {
-  //     await this._tramiteService.deleteCitasByRun(run);
-  //     this.closePopup();
-  //   } catch (error) {
-  //     console.error('Error al eliminar citas:', error);
-  //   }
-  // }
 }
