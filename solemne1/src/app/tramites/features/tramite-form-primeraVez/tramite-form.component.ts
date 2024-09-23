@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormPrimeraLicencia } from '../../../utils/interfaces';
-import { datePrimeraVez, hasErrorRun, isRequired, notAdult, runValidator } from '../../../utils/validator';
+import { FormPrimeraLicencia } from '../../../core/utils/interfaces';
+import { datePrimeraVez, hasErrorRun, isRequired, notAdult, runValidator } from '../../../core/utils/validator';
 import { CitaLicencia, TramiteService } from '../../data-acces/tramite.service';
-import { SharedService } from '../../../utils/shared.service';
+import { SharedService } from '../../../core/utils/shared.service';
 import { Router } from '@angular/router';
 import { PopupService } from '../../../core/ui/popup.service';
 import PopUpComponent from "../../../core/ui/popup.component";

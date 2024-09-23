@@ -1,24 +1,118 @@
-# WebYMovil
+Solemne1 - Sistema de Agendamiento de Citas para Licencia de Conducir
+Descripción
+Solemne1 es una aplicación web diseñada para que los ciudadanos puedan agendar citas presenciales para obtener o renovar su licencia de conducir en Chile, o modificar una cita previamente agendada. El sistema utiliza autenticación anónima basada en el RUN (Rol Único Nacional) y permite gestionar los horarios disponibles de forma dinámica.
 
+Requisitos
+Dependencias principales:
+Node.js (v20.17 LTS o superior)
+npm (v10.8 o superior)
+Angular (v18.2 o superior)
+Firebase (Configurado con Firestore)
+TailwindCSS (para estilos)
+ngx-sonner (para alertas emergentes)
+Rut Utilities (para validar el RUN)
+Instalación de dependencias
+Asegúrate de tener Node.js y npm instalados:
 
-DECISIONES TECNICAS
+bash
+Copiar código
+node --version
+npm --version
+Si no los tienes instalados, descárgalos desde Node.js.
 
-1-Auth: El usuario se autentica de forma anonima (evitando utilizar contrasena y correo) solo con su rut, para poder gestionar permisos de rutas mas facilmente (routesGuard en './app/core/auth.guard.ts')
+Instalar Angular CLI globalmente:
 
-2-Core/layout y Core/popup Componentes centralizados sin ruta que estaran presente en todos los componentes con .html, para visualizar una NavBar y poder gestionar un PopUp personalizado
+bash
+Copiar código
+npm install -g @angular/cli
+Dentro de la carpeta raíz del proyecto solemne1, instala las dependencias:
 
-3-utils Carpeta con utilidades e interfaces de uso comun entre componentes
+bash
+Copiar código
+cd solemne1
+npm install
+Verificación de la instalación
+Para verificar que todo esté correctamente instalado:
 
-4-FormControl, se utilizo ReactiveFormsModule y FormControl junto a sus validators, para manejar de manera mas dinamica las validaciones y requisitos de los valores de los formularios tanto de 'log-in' como de 'tramites'
+Revisa que los paquetes necesarios estén instalados:
 
-5-Firebase, se utilizo firebase porque skill issue
+bash
+Copiar código
+npm list
+Asegúrate de que Angular esté correctamente configurado:
 
-6-TailwindCSS, se utilizo tailwindCSS en lugar de boostrap, porque gracias a flowbite se tiene un mayor repertorio de interfaces dinamicas (Ma lindo)
+bash
+Copiar código
+ng --version
+Despliegue local del proyecto
+Para desplegar la aplicación de forma local:
 
-7-Componentes Standalo, somo pulento, los componentes tambien y se manejan solos, aguante angular 18
+Ejecuta el servidor de desarrollo:
 
-8-SharedService, se creo un servicio compartido para poder mantener los datos ingresados a travez de todos los componentes, incluso al recargar pagina gracias a localStorage
+bash
+Copiar código
+ng serve
+Abre tu navegador y navega a http://localhost:4200/.
 
-9-Toast, alertas emergentes mas lindas
+Despliegue en producción (Firebase Hosting)
+Configura Firebase en tu proyecto. Si no lo tienes configurado:
 
-10-Se utilizo un tema oscuro para la pagina web pa que no duelan los ojitos
+Dirígete a Firebase Console.
+Crea un proyecto.
+Habilita Firestore Database.
+En la terminal, inicia sesión en Firebase:
+
+bash
+Copiar código
+firebase login
+Configura Firebase Hosting en tu proyecto:
+
+bash
+Copiar código
+firebase init
+Selecciona Hosting y sigue las instrucciones.
+
+Despliega la aplicación:
+
+bash
+Copiar código
+ng build --prod
+firebase deploy
+Compatibilidad del proyecto
+Ubuntu (Linux)
+El proyecto fue desarrollado en Ubuntu 24.04 LTS. Todas las instrucciones anteriores han sido probadas y funcionan correctamente en este entorno.
+Windows
+Instala Node.js desde Node.js Windows Installer.
+Usa la PowerShell o CMD para ejecutar los comandos:
+bash
+Copiar código
+npm install
+ng serve
+macOS
+Instala Node.js a través de Homebrew:
+
+bash
+Copiar código
+brew install node
+Después de la instalación, sigue los mismos pasos:
+
+bash
+Copiar código
+npm install
+ng serve
+Aspectos importantes del proyecto
+Autenticación Anónima: La aplicación solo requiere el RUN del usuario, evitando la complejidad de gestionar contraseñas.
+
+Uso de Firebase: Todo el sistema de citas está basado en Firestore para manejar datos en tiempo real.
+
+Diseño UI Dinámico: TailwindCSS con Flowbite permite un diseño atractivo y reactivo.
+
+Componentes Standalone en Angular 18: Aprovechamos la nueva característica de componentes standalone para simplificar la arquitectura.
+
+SharedService: Se creó un servicio compartido para mantener los datos persistentes incluso al refrescar la página, aprovechando localStorage.
+
+Dark Mode: El proyecto está optimizado con un tema oscuro para una experiencia visual más cómoda.
+
+Notas adicionales
+Este proyecto fue creado y probado en Ubuntu 24.04 LTS, pero debería ser compatible con Windows y macOS sin problemas.
+En caso de problemas de compatibilidad, verifica la versión de Node.js y Angular, ya que podrían afectar el despliegue.
