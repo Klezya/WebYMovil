@@ -83,9 +83,10 @@ El proyecto está optimizado con un tema oscuro para una experiencia visual más
 ---
 
 ## Integrantes
-***Nuñez Lara, Benjamin***
+**Nuñez Lara, Benjamin**
 
 **Estay Valdivia, Vicente**
-*Oyanedel Cortes, Luis*
+
+**Oyanedel Cortes, Luis**
 
 Universidad Andres Bello 2024
