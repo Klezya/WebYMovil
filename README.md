@@ -82,6 +82,8 @@ El proyecto está optimizado con un tema oscuro para una experiencia visual más
 
 <footer>
 
+---
+
 **Integrantes**
 -Nuñez Lara, Benjamin
 -Estay Valdivia, Vicente
