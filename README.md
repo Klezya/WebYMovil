@@ -79,3 +79,14 @@ Se implementaron formularios reactivos con validaciones para asegurar que los da
 
 **Dark Mode**
 El proyecto está optimizado con un tema oscuro para una experiencia visual más cómoda.
+
+<footer>
+
+**Integrantes**
+-Nuñez Lara, Benjamin
+-Estay Valdivia, Vicente
+-Oyanedel Cortes, Luis
+
+Universidad Andres Bello 2024
+
+</footes>
