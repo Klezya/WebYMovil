@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { PopupService } from './popup.service';
 import { TramiteService } from '../../tramites/data-acces/tramite.service';
-import { SharedService } from '../../utils/shared.service';
+import { SharedService } from '../utils/shared.service';
 import { Router } from '@angular/router';
 
 @Component({

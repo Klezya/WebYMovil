@@ -6,10 +6,10 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../data-access/auth.service';
 import { Router } from '@angular/router';
-import { formatearRut, hasErrorRun, isRequired, runValidator } from '../../../utils/validator';
+import { formatearRut, hasErrorRun, isRequired, runValidator } from '../../../core/utils/validator';
 import { toast } from 'ngx-sonner';
-import { FormLogIn } from '../../../utils/interfaces';
-import { SharedService } from '../../../utils/shared.service';
+import { FormLogIn } from '../../../core/utils/interfaces';
+import { SharedService } from '../../../core/utils/shared.service';
 
 
 @Component({

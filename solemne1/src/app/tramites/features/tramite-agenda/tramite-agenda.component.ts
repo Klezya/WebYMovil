@@ -3,7 +3,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopupService } from '../../../core/ui/popup.service';
 import { CitaLicencia, TramiteService } from '../../data-acces/tramite.service';
-import { SharedService } from '../../../utils/shared.service';
+import { SharedService } from '../../../core/utils/shared.service';
 import { toast } from 'ngx-sonner';
 import PopUpComponent from "../../../core/ui/popup.component";
 

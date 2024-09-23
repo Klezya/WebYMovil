@@ -1,7 +1,7 @@
 import { Component, inject} from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
-import { SharedService } from '../../../utils/shared.service';
+import { SharedService } from '../../../core/utils/shared.service';
 import PopUpComponent from "../../../core/ui/popup.component";
 
 @Component({
