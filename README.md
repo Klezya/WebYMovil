@@ -80,8 +80,6 @@ Se implementaron formularios reactivos con validaciones para asegurar que los da
 **Dark Mode**
 El proyecto está optimizado con un tema oscuro para una experiencia visual más cómoda.
 
-<footer>
-
 ---
 
 **Integrantes**
@@ -90,5 +88,3 @@ El proyecto está optimizado con un tema oscuro para una experiencia visual más
 -Oyanedel Cortes, Luis
 
 Universidad Andres Bello 2024
-
-</footes>
