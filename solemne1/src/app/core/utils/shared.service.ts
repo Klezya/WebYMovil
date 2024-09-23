@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CitaLicencia } from '../tramites/data-acces/tramite.service';
+import { CitaLicencia } from '../../tramites/data-acces/tramite.service';
 
 @Injectable({
   providedIn: 'root',  // Esto asegura que el servicio sea singleton
